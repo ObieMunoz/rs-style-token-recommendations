@@ -35,4 +35,4 @@ The program will scan the specified directory and output the detected hard-coded
 If you want to build the project from source or contribute to it, please refer to this GitHub repository.
 
 ## Example Output
-![image](https://user-images.githubusercontent.com/5696449/231904988-87241279-53e4-4869-9154-271cb4bed1cf.png)
+![image](https://user-images.githubusercontent.com/5696449/231905289-20126322-296b-4ef1-9a44-60bfe9feecd1.png)
