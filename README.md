@@ -33,3 +33,6 @@ Replace "path/to/your/project" with the path to the directory you want to scan.
 The program will scan the specified directory and output the detected hard-coded pixel values, along with the recommended tokens, to the console. The output will also be saved to an output.txt file in the current working directory.
 
 If you want to build the project from source or contribute to it, please refer to this GitHub repository.
+
+### Example Output
+![image](https://user-images.githubusercontent.com/5696449/231904988-87241279-53e4-4869-9154-271cb4bed1cf.png)
