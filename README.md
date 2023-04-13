@@ -1,1 +1,35 @@
-A Rust port of my TypeScript/Node.js utility that scans a project's directory for Svelte, CSS, and SCSS files, and analyzes their styles containing pixel values. It aims to identify and suggest appropriate spacing tokens (in rem units) as replacements for hardcoded pixel values to improve consistency and maintainability across the project. The program traverses all nested folders starting from the current working directory and generates a report for each file containing the line number, style name, original pixel value, and the recommended spacing token. This utility is designed to help developers adhere to a predefined set of spacing values and make the process of updating and managing styles more efficient.
+### RS-Token-Recommendations
+RS-Token-Recommendations is a Rust-based command-line utility that scans Svelte, CSS, and SCSS files in a specified directory and its subdirectories to detect hard-coded pixel values. It then recommends the nearest spacing tokens from a predefined list.
+
+This is the Rust version of my original project that I wrote in TypeScript/Node.js.
+
+### Usage
+To use this program, download the appropriate binary for your operating system (Windows or Unix) from the GitHub releases.
+
+## Windows
+1. Download the Windows executable rs-token-recommendations.exe from the GitHub releases page.
+2. Open the Command Prompt.
+3. Navigate to the directory containing the downloaded executable.
+4. Run the program with the following command:
+```
+rs-token-recommendations.exe "path/to/your/project"
+```
+Replace "path/to/your/project" with the path to the directory you want to scan.
+
+## Unix
+1. Download the Unix binary rs-token-recommendations from the GitHub releases page.
+2. Open the terminal.
+3. Navigate to the directory containing the downloaded binary.
+4. If necessary, grant execute permissions to the binary:
+```
+chmod +x rs-token-recommendations
+```
+5. Run the program with the following command:
+```
+./rs-token-recommendations "path/to/your/project"
+```
+Replace "path/to/your/project" with the path to the directory you want to scan.
+
+The program will scan the specified directory and output the detected hard-coded pixel values, along with the recommended tokens, to the console. The output will also be saved to an output.txt file in the current working directory.
+
+If you want to build the project from source or contribute to it, please refer to this GitHub repository.
