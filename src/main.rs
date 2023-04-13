@@ -61,7 +61,7 @@ fn find_nearest_token(value: f64, tokens: &HashMap<String, f64>) -> String {
     nearest_token
 }
 
-fn process_file(file_path: &str, tokens: &HashMap<String, f64>) {
+fn process_file(file_path: &str, tokens: &HashMap<String, f64>, output_file: &mut File) {
     let file = File::open(file_path).expect("Unable to open file");
     let reader = BufReader::new(file);
 
@@ -95,11 +95,21 @@ fn process_file(file_path: &str, tokens: &HashMap<String, f64>) {
                 px_value_string,
                 recommendations
             );
+
+            writeln!(
+                output_file,
+                "Line: {} - {}: {} | Recommendations: {}",
+                line_number + 1,
+                style_name,
+                px_value_string,
+                recommendations
+            )
+            .expect("Unable to write to output file");
         }
     }
 }
 
-fn traverse_dir(dir_path: &Path, tokens: &HashMap<String, f64>) {
+fn traverse_dir(dir_path: &Path, tokens: &HashMap<String, f64>, output_file: &mut File) {
     for entry in fs::read_dir(dir_path).expect("Unable to read directory") {
         let entry = entry.expect("Unable to read entry");
         let entry_path = entry.path();
@@ -112,10 +122,12 @@ fn traverse_dir(dir_path: &Path, tokens: &HashMap<String, f64>) {
                     .to_str()
                     .expect("Unable to convert path to string");
                 println!("\nFile: {}", file_path);
-                process_file(file_path, &tokens);
+                writeln!(output_file, "\nFile: {}", file_path)
+                    .expect("Unable to write to output file");
+                process_file(file_path, &tokens, output_file);
             }
         } else if entry_path.is_dir() {
-            traverse_dir(&entry_path, tokens);
+            traverse_dir(&entry_path, tokens, output_file);
         }
     }
 }
@@ -133,6 +145,9 @@ fn main() {
         return;
     }
 
+    let file_output_path = "output.txt";
+    let mut output_file = File::create(file_output_path).expect("Unable to create file");
+
     let tokens = create_tokens();
-    traverse_dir(&start_path, &tokens);
+    traverse_dir(&start_path, &tokens, &mut output_file);
 }
